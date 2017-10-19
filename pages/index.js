@@ -17,7 +17,10 @@ export default class Index extends React.Component {
         </Head>
 
         <DemoAframeScene />
-        <Toolbar style={{position: 'absolute', bottom: '15px'}} numberOfItems={9} />
+        <Toolbar
+          style={{position: 'absolute', bottom: '16px'}}
+          numberOfItems={9}
+        />
 
         <style jsx>{`
           .metavrse-root {
