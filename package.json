@@ -1,0 +1,33 @@
+{
+  "name": "metavrse-toolbar",
+  "version": "1.0.0",
+  "description": "Toolbar that allows you to execute arbitrary scripts in an A-frame scene",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gmaliandi/metavrse-toolbar.git"
+  },
+  "keywords": [
+    "metaverse",
+    "a-frame",
+    "three.js",
+    "vr"
+  ],
+  "author": "gmaliandi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmaliandi/metavrse-toolbar/issues"
+  },
+  "homepage": "https://github.com/gmaliandi/metavrse-toolbar#readme",
+  "dependencies": {
+    "aframe": "^0.7.1",
+    "lodash": "^4.17.4",
+    "next": "latest",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}
