@@ -1,4 +1,5 @@
 import 'aframe';
+import React from 'react';
 
 export default class DemoAframeScene extends React.Component {
   render() {
