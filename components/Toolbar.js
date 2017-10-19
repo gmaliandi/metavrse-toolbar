@@ -15,6 +15,10 @@ export default class Toolbar extends React.Component {
     this.setState({selectedIndex});
   }
 
+  openCodeWindow(index) {
+    console.log('codiiiiing')
+  }
+
   render() {
     return (
       <div style={this.props.style} className="toolbar">
@@ -23,6 +27,7 @@ export default class Toolbar extends React.Component {
             key={i}
             selected={this.state.selectedIndex === i}
             onClick={() => this.setSelected(i)}
+            onContextMenu={() => this.openCodeWindow(i)}
             style={{marginRight: '2px'}}
           />
         ))}

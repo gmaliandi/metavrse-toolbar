@@ -1,9 +1,20 @@
 import React from 'react';
 
 export default class ToolbarItem extends React.Component {
+  handleContextMenu(e) {
+    e.preventDefault();
+
+    this.props.onContextMenu();
+  }
+
   render() {
     return (
-      <div onClick={this.props.onClick} style={this.props.style} className="toolbarItem">
+      <div
+        onClick={this.props.onClick}
+        onContextMenu={(e) => this.handleContextMenu(e)}
+        style={this.props.style}
+        className="toolbarItem"
+      >
         <div className="content">
 
         </div>
