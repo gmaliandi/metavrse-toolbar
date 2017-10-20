@@ -12,8 +12,11 @@ export default class CodeEditor extends React.Component {
   constructor(props) {
     super(props);
 
+    const savedCode = getDefaultCode(this.props.index + 1);
+
     this.state = {
-      code: getDefaultCode(this.props.index + 1)
+      savedCode,
+      code: savedCode
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -23,17 +26,21 @@ export default class CodeEditor extends React.Component {
   }
 
   onChange(code) {
-    this.setState({code, dirty: true});
+    this.setState({code});
+  }
+
+  get isDirty() {
+    return this.state.code !== this.state.savedCode;
   }
 
   exit() {
-    if (!this.state.dirty || confirm('Are you sure you want to discard your changes?')) {
+    if (!this.isDirty || confirm('Are you sure you want to discard your changes?')) {
       this.props.exit();
     }
   }
 
   save() {
-    this.setState({dirty: false});
+    this.setState({savedCode: this.state.code});
     this.props.save(this.state.code);
   }
 
@@ -58,7 +65,7 @@ export default class CodeEditor extends React.Component {
     return (
       <div>
         <div className="titleBar">
-          <span>editing script at position {this.props.index + 1} {this.state.dirty ? '*' : ''}</span>
+          <span>editing script at position {this.props.index + 1}{this.isDirty ? '*' : ' '}</span>
           <span> | press <kbd onClick={this.save}>control+s</kbd> to save, <kbd onClick={this.exit}>esc</kbd> to go back to scene</span>
           <style jsx>{`
             .titleBar {
