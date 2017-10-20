@@ -25,9 +25,11 @@
   "homepage": "https://github.com/gmaliandi/metavrse-toolbar#readme",
   "dependencies": {
     "aframe": "^0.7.1",
+    "brace": "^0.10.0",
     "lodash": "^4.17.4",
     "next": "latest",
     "react": "^16.0.0",
+    "react-ace": "^5.4.0",
     "react-dom": "^16.0.0"
   },
   "devDependencies": {

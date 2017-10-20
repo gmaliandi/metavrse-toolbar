@@ -2,7 +2,11 @@ import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Toolbar from '../components/Toolbar';
-import CodeEditor from '../components/CodeEditor';
+
+const CodeEditor = dynamic(import('../components/CodeEditor'), {
+  ssr: false,
+  loading: () => <p>Loading code editor...</p>
+});
 
 const DemoAframeScene = dynamic(import('../components/DemoAframeScene'), {
   ssr: false,
@@ -23,8 +27,12 @@ export default class Index extends React.Component {
     this.setState({selectedIndex});
   }
 
-  openCodeEditor(codingIndex) {
+  setCoding(codingIndex) {
     this.setState({codingIndex});
+  }
+
+  saveCode(code) {
+    console.log('code saved', code);
   }
 
   get isCoding() {
@@ -44,12 +52,14 @@ export default class Index extends React.Component {
           setSelected={(i) => this.setSelected(i)}
           style={{position: 'absolute', bottom: '16px'}}
           numberOfItems={9}
-          editCode={(i) => this.openCodeEditor(i)}
+          editCode={(i) => this.setCoding(i)}
         />
 
         {this.isCoding &&
           <CodeEditor
             index={this.state.codingIndex}
+            exit={() => this.setCoding(null)}
+            save={(code) => this.saveCode(code)}
           />
         }
 
