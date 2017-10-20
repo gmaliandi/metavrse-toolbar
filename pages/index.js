@@ -2,7 +2,14 @@ import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Toolbar from '../components/Toolbar';
-import {getCode, registerScript, hasCode} from '../lib/coding';
+import {
+  getCode,
+  registerScript,
+  hasCode,
+  loadFromLocalStorage as loadScriptsFromLocalStorage,
+  handleEvent,
+  validEventNames
+} from '../lib/coding';
 
 const CodeEditor = dynamic(import('../components/CodeEditor'), {
   ssr: false,
@@ -22,6 +29,8 @@ export default class Index extends React.Component {
       selectedIndex: 0,
       codingIndex: null
     };
+
+    this.onSceneObjectClicked = this.onSceneObjectClicked.bind(this);
   }
 
   setSelected(selectedIndex) {
@@ -43,6 +52,17 @@ export default class Index extends React.Component {
     return this.state.codingIndex !== null;
   }
 
+  async componentDidMount() {
+    await loadScriptsFromLocalStorage();
+    // HACK same as above
+    this.forceUpdate();
+  }
+
+  onSceneObjectClicked(e) {
+    const obj = e.target;
+    handleEvent(this.state.selectedIndex, validEventNames.CLICK, {e, obj});
+  }
+
   render() {
     return (
       <div className="metavrse-root">
@@ -54,7 +74,10 @@ export default class Index extends React.Component {
           </script>
         </Head>
 
-        <DemoAframeScene />
+        <DemoAframeScene
+          handleClick={this.onSceneObjectClicked}
+        />
+
         <Toolbar
           selectedIndex={this.state.selectedIndex}
           setSelected={(i) => this.setSelected(i)}
