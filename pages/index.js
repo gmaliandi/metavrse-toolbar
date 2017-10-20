@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Toolbar from '../components/Toolbar';
+import {getCode, registerScript} from '../lib/coding';
 
 const CodeEditor = dynamic(import('../components/CodeEditor'), {
   ssr: false,
@@ -32,7 +33,10 @@ export default class Index extends React.Component {
   }
 
   saveCode(code) {
-    console.log('code saved', code);
+    registerScript(this.state.codingIndex, code);
+    // HACK this forces the code prop to be updated in the code editor.
+    // Would be way better to use redux to handle this.
+    this.forceUpdate();
   }
 
   get isCoding() {
@@ -58,6 +62,7 @@ export default class Index extends React.Component {
         {this.isCoding &&
           <CodeEditor
             index={this.state.codingIndex}
+            code={getCode(this.state.codingIndex)}
             exit={() => this.setCoding(null)}
             save={(code) => this.saveCode(code)}
           />

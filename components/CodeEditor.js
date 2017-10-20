@@ -6,17 +6,12 @@ import 'brace/mode/javascript';
 import 'brace/theme/chaos';
 import 'brace/ext/language_tools';
 
-import {getDefaultCode} from '../lib/coding';
-
 export default class CodeEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    const savedCode = getDefaultCode(this.props.index + 1);
-
     this.state = {
-      savedCode,
-      code: savedCode
+      code: this.props.code
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -30,7 +25,7 @@ export default class CodeEditor extends React.Component {
   }
 
   get isDirty() {
-    return this.state.code !== this.state.savedCode;
+    return this.state.code !== this.props.code;
   }
 
   exit() {
@@ -40,7 +35,6 @@ export default class CodeEditor extends React.Component {
   }
 
   save() {
-    this.setState({savedCode: this.state.code});
     this.props.save(this.state.code);
   }
 
@@ -65,7 +59,7 @@ export default class CodeEditor extends React.Component {
     return (
       <div>
         <div className="titleBar">
-          <span>editing script at position {this.props.index + 1}{this.isDirty ? '*' : ' '}</span>
+          <span>editing script at position {this.props.index}{this.isDirty ? '*' : ' '}</span>
           <span> | press <kbd onClick={this.save}>control+s</kbd> to save, <kbd onClick={this.exit}>esc</kbd> to go back to scene</span>
           <style jsx>{`
             .titleBar {
