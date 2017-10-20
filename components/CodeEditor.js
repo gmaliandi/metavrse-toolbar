@@ -17,6 +17,9 @@ export default class CodeEditor extends React.Component {
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.exit = this.exit.bind(this);
+    this.save = this.save.bind(this);
   }
 
   onChange(code) {
@@ -56,7 +59,7 @@ export default class CodeEditor extends React.Component {
       <div>
         <div className="titleBar">
           <span>editing script at position {this.props.index + 1} {this.state.dirty ? '*' : ''}</span>
-          <span> | press <kbd>control+s</kbd> to save, <kbd>esc</kbd> to go back to scene</span>
+          <span> | press <kbd onClick={this.save}>control+s</kbd> to save, <kbd onClick={this.exit}>esc</kbd> to go back to scene</span>
           <style jsx>{`
             .titleBar {
               position: absolute;
@@ -73,22 +76,19 @@ export default class CodeEditor extends React.Component {
             }
 
             kbd {
-              -moz-border-radius:3px;
-               -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-               -webkit-border-radius:3px;
-               -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-               background-color:#f7f7f7;
-               border:1px solid #ccc;
-               border-radius:3px;
-               box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-               color:#333;
-               display:inline-block;
-               font-family:Arial,Helvetica,sans-serif;
-               font-size:11px;
-               line-height:1.4;
-               margin:0 .1em;
-               padding:.1em .6em;
-               text-shadow:0 1px 0 #fff;
+              background-color:#f7f7f7;
+              border:1px solid #ccc;
+              border-radius:3px;
+              box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+              color:#333;
+              display:inline-block;
+              font-family:Arial,Helvetica,sans-serif;
+              font-size:11px;
+              line-height:1.4;
+              margin:0 .1em;
+              padding:.1em .6em;
+              text-shadow:0 1px 0 #fff;
+              cursor: pointer;
             }
           `}</style>
         </div>
@@ -106,7 +106,7 @@ export default class CodeEditor extends React.Component {
           fontSize={16}
           mode="javascript"
           theme="chaos"
-          onChange={this.onChange.bind(this)}
+          onChange={this.onChange}
           showPrintMargin={false}
           editorProps={{
             $blockScrolling: true
