@@ -31,6 +31,8 @@ export default class Index extends React.Component {
     };
 
     this.onSceneObjectClicked = this.onSceneObjectClicked.bind(this);
+    this.onSceneObjectMouseEnter = this.onSceneObjectMouseEnter.bind(this);
+    this.onSceneObjectMouseLeave = this.onSceneObjectMouseLeave.bind(this);
   }
 
   setSelected(selectedIndex) {
@@ -63,6 +65,16 @@ export default class Index extends React.Component {
     handleEvent(this.state.selectedIndex, validEventNames.CLICK, {e, obj});
   }
 
+  onSceneObjectMouseLeave(e) {
+    const obj = e.target;
+    handleEvent(this.state.selectedIndex, validEventNames.HOVER_END, {e, obj});
+  }
+
+  onSceneObjectMouseEnter(e) {
+    const obj = e.target;
+    handleEvent(this.state.selectedIndex, validEventNames.HOVER, {e, obj});
+  }
+
   render() {
     return (
       <div className="metavrse-root">
@@ -76,6 +88,8 @@ export default class Index extends React.Component {
 
         <DemoAframeScene
           handleClick={this.onSceneObjectClicked}
+          handleMouseEnter={this.onSceneObjectMouseEnter}
+          handleMouseLeave={this.onSceneObjectMouseLeave}
         />
 
         <Toolbar
