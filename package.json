@@ -26,6 +26,7 @@
   "dependencies": {
     "aframe": "^0.7.1",
     "brace": "^0.10.0",
+    "local-storage": "^1.4.2",
     "lodash": "^4.17.4",
     "next": "latest",
     "react": "^16.0.0",

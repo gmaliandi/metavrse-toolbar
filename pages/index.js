@@ -32,8 +32,8 @@ export default class Index extends React.Component {
     this.setState({codingIndex});
   }
 
-  saveCode(code) {
-    registerScript(this.state.codingIndex, code);
+  async saveCode(code) {
+    await registerScript(this.state.codingIndex, code);
     // HACK this forces the code prop to be updated in the code editor.
     // Would be way better to use redux to handle this.
     this.forceUpdate();
