@@ -22,6 +22,7 @@ module.exports = {
         "react/display-name": "off"
     },
     "globals": {
-        "fetch": true
+        "fetch": true,
+        "confirm": true
     }
 };

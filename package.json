@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Toolbar that allows you to execute arbitrary scripts in an A-frame scene",
   "scripts": {
-    "start": "node index",
-    "dev": "node index",
+    "start": "next start",
+    "dev": "next",
     "build": "next build"
   },
   "repository": {
