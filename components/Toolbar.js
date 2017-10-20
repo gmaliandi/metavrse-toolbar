@@ -11,6 +11,7 @@ export default (props) => (
         onClick={() => props.setSelected(i)}
         onContextMenu={() => props.editCode(i)}
         style={{marginRight: '2px'}}
+        hasCode={props.hasCode(i)}
       />
     ))}
 

@@ -16,7 +16,7 @@ export default class ToolbarItem extends React.Component {
         className="toolbarItem"
       >
         <div className="content">
-
+          {this.props.hasCode && `{}`}
         </div>
 
         <style jsx>{`
@@ -35,7 +35,11 @@ export default class ToolbarItem extends React.Component {
             width: 100%;
             height: 100%;
             background: ${this.props.selected ? '#aaa' : 'transparent'}
-            opacity: 0.7;
+            opacity: 0.75;
+            font-size: 48px;
+            font-family: monospace;
+            text-align: center;
+            line-height: 128px;
           }
         `}</style>
       </div>

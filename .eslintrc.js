@@ -23,6 +23,7 @@ module.exports = {
     },
     "globals": {
         "fetch": true,
-        "confirm": true
+        "confirm": true,
+        "alert": true
     }
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Toolbar from '../components/Toolbar';
-import {getCode, registerScript} from '../lib/coding';
+import {getCode, registerScript, hasCode} from '../lib/coding';
 
 const CodeEditor = dynamic(import('../components/CodeEditor'), {
   ssr: false,
@@ -61,6 +61,7 @@ export default class Index extends React.Component {
           style={{position: 'absolute', bottom: '16px'}}
           numberOfItems={9}
           editCode={(i) => this.setCoding(i)}
+          hasCode={hasCode}
         />
 
         {this.isCoding &&
