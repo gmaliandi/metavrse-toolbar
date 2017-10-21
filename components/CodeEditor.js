@@ -6,12 +6,15 @@ import 'brace/mode/javascript';
 import 'brace/theme/chaos';
 import 'brace/ext/language_tools';
 
+const FADE_TIME = 150;
+
 export default class CodeEditor extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      code: this.props.code
+      code: this.props.code,
+      opacity: 0
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -30,7 +33,8 @@ export default class CodeEditor extends React.Component {
 
   exit() {
     if (!this.isDirty || confirm('Are you sure you want to discard your changes?')) {
-      this.props.exit();
+      this.setState({opacity: 0});
+      setTimeout(this.props.exit, FADE_TIME);
     }
   }
 
@@ -48,6 +52,7 @@ export default class CodeEditor extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({opacity: 1});
     document.addEventListener('keydown', this.handleKeyPress, false);
   }
 
@@ -177,9 +182,15 @@ export default class CodeEditor extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{opacity: this.state.opacity}} className="root">
         {this.renderTitleBar()}
         {this.renderAceEditor()}
+
+        <style jsx>{`
+          .root {
+            transition: opacity ${FADE_TIME / 1000}s linear;
+          }
+        `}</style>
       </div>
     );
   }
