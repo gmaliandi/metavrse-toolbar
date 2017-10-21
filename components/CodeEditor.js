@@ -74,6 +74,7 @@ export default class CodeEditor extends React.Component {
               height: 22px;
               padding-top: 3px;
               background: #111;
+              user-select: none;
             }
 
             kbd {

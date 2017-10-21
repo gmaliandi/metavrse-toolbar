@@ -2,43 +2,48 @@ import 'aframe';
 import React from 'react';
 
 export default class DemoAframeScene extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.interactableObjects = [];
+  }
+
   attachEventHandlers(objects) {
     for (let object of objects) {
       object.addEventListener('mouseenter', this.props.handleMouseEnter);
       object.addEventListener('mouseleave', this.props.handleMouseLeave);
+      object.addEventListener('click', this.props.handleClick);
     }
   }
 
   componentDidMount() {
-    this.attachEventHandlers([this._box, this._sphere, this._cylinder]);
+    this.attachEventHandlers(this.interactableObjects);
   }
 
   render() {
     return (
       <a-scene cursor="rayOrigin: mouse">
         <a-box
-          ref={box => { this._box = box; }}
-          onClick={this.props.handleClick}
+          ref={obj => { this.interactableObjects.push(obj); }}
           position="-1 0.5 -3"
           rotation="0 45 0"
           color="#4CC3D9"
         />
         <a-sphere
-          ref={sphere => { this._sphere = sphere; }}
-          onClick={this.props.handleClick}
+          ref={obj => { this.interactableObjects.push(obj); }}
           position="0 1.25 -5"
           radius="1.25"
           color="#EF2D5E"
-        ></a-sphere>
+        />
         <a-cylinder
-          ref={cylinder => { this._cylinder = cylinder; }}
-          onClick={this.props.handleClick}
+          ref={obj => { this.interactableObjects.push(obj); }}
           position="1 0.75 -3"
           radius="0.5"
           height="1.5"
           color="#FFC65D"
         />
         <a-plane
+          ref={obj => { this.interactableObjects.push(obj); }}
           position="0 0 -4"
           rotation="-90 0 0"
           width="4"
