@@ -6,14 +6,19 @@ export default class DemoAframeScene extends React.Component {
     super(props);
 
     this.interactableObjects = [];
+    this.handleContextMenu = this.handleContextMenu.bind(this);
   }
 
   attachEventHandlers(objects) {
     for (let object of objects) {
       object.addEventListener('mouseenter', this.props.handleMouseEnter);
       object.addEventListener('mouseleave', this.props.handleMouseLeave);
-      object.addEventListener('click', this.props.handleClick);
+      object.addEventListener('click', this.props.handleClick); // FIXME this doesn't distinguish between left and right click
     }
+  }
+
+  handleContextMenu(e) {
+    e.preventDefault();
   }
 
   componentDidMount() {
@@ -22,7 +27,7 @@ export default class DemoAframeScene extends React.Component {
 
   render() {
     return (
-      <a-scene cursor="rayOrigin: mouse">
+      <a-scene onContextMenu={this.handleContextMenu} cursor="rayOrigin: mouse">
         <a-box
           ref={obj => { this.interactableObjects.push(obj); }}
           position="-1 0.5 -3"
