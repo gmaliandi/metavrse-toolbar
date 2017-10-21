@@ -35,7 +35,7 @@ export default class ToolbarItem extends React.Component {
             user-select: none;
             width: 100%;
             height: 100%;
-            background: ${this.props.selected ? '#aaa' : 'transparent'}
+            background-color: ${this.props.selected ? 'rgba(0, 174, 239, 0.7)' : 'transparent'}
             opacity: 0.75;
             font-size: 48px;
             font-family: monospace;

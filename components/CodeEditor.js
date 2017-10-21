@@ -55,73 +55,131 @@ export default class CodeEditor extends React.Component {
     document.removeEventListener('keydown', this.handleKeyPress, false);
   }
 
+  renderTitleBar() {
+    return (
+      <div className="titleBar">
+        <span>editing script at position {this.props.index}{this.isDirty ? '*' : ' '}</span>
+        <span> | press <kbd onClick={this.save}>control+s</kbd> to save, <kbd onClick={this.exit}>esc</kbd> to go back to scene</span>
+        <span onClick={this.save} className="save">&#10003;</span>
+        <div onClick={this.exit} className="close" />
+        <style jsx>{`
+          .titleBar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: monospace;
+            font-size: 14px;
+            text-align: center;
+            color: #ddd;
+            width: 100%;
+            height: 22px;
+            padding-top: 3px;
+            background: #111;
+            user-select: none;
+          }
+
+          .save {
+            font-size: 32px;
+            float: right;
+            line-height: 18px;
+            margin-right: 28px;
+            opacity: 0.5;
+            cursor: pointer;
+            color: #ddd;
+          }
+
+          .save:hover {
+            opacity: 1;
+          }
+
+          kbd {
+            background-color:#f7f7f7;
+            border:1px solid #ccc;
+            border-radius:3px;
+            box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color:#333;
+            display:inline-block;
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:11px;
+            line-height:1.4;
+            margin:0 .1em;
+            padding:.1em .6em;
+            text-shadow:0 1px 0 #fff;
+            cursor: pointer;
+          }
+
+          .close {
+            position: absolute;
+            right: 5px;
+            top: 1px;
+            width: 20px;
+            height: 24px;
+            opacity: 0.5;
+            cursor: pointer;
+          }
+
+          .close:hover {
+            opacity: 1;
+          }
+
+          .close:before, .close:after {
+            position: absolute;
+            left: 10px;
+            content: ' ';
+            height: 24px;
+            width: 2px;
+            background-color: #ddd;
+          }
+
+          .close:before {
+            transform: rotate(45deg);
+          }
+
+          .close:after {
+            transform: rotate(-45deg);
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  renderAceEditor() {
+    return (
+      <AceEditor
+        style={{
+          position: 'absolute',
+          top: '25px',
+          left: 0,
+          opacity: 0.95
+        }}
+        width="100%"
+        height="calc(100% - 25px)"
+        focus={true}
+        fontSize={16}
+        mode="javascript"
+        theme="chaos"
+        onChange={this.onChange}
+        showPrintMargin={false}
+        editorProps={{
+          $blockScrolling: true
+        }}
+        setOptions={{
+          enableBasicAutocompletion: true,
+          enableLiveAutocompletion: true,
+          enableSnippets: false,
+          showLineNumbers: true,
+          tabSize: 2
+        }}
+        value={this.state.code}
+      />
+    );
+  }
+
   render() {
     return (
       <div>
-        <div className="titleBar">
-          <span>editing script at position {this.props.index}{this.isDirty ? '*' : ' '}</span>
-          <span> | press <kbd onClick={this.save}>control+s</kbd> to save, <kbd onClick={this.exit}>esc</kbd> to go back to scene</span>
-          <style jsx>{`
-            .titleBar {
-              position: absolute;
-              top: 0;
-              left: 0;
-              font-family: monospace;
-              font-size: 14px;
-              text-align: center;
-              color: #ddd;
-              width: 100%;
-              height: 22px;
-              padding-top: 3px;
-              background: #111;
-              user-select: none;
-            }
-
-            kbd {
-              background-color:#f7f7f7;
-              border:1px solid #ccc;
-              border-radius:3px;
-              box-shadow:0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-              color:#333;
-              display:inline-block;
-              font-family:Arial,Helvetica,sans-serif;
-              font-size:11px;
-              line-height:1.4;
-              margin:0 .1em;
-              padding:.1em .6em;
-              text-shadow:0 1px 0 #fff;
-              cursor: pointer;
-            }
-          `}</style>
-        </div>
-
-        <AceEditor
-          style={{
-            position: 'absolute',
-            top: '25px',
-            left: 0,
-            opacity: 0.95
-          }}
-          width="100%"
-          height="calc(100% - 25px)"
-          focus={true}
-          fontSize={16}
-          mode="javascript"
-          theme="chaos"
-          onChange={this.onChange}
-          showPrintMargin={false}
-          editorProps={{
-            $blockScrolling: true
-          }}
-          setOptions={{
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true,
-            enableSnippets: false,
-            showLineNumbers: true,
-            tabSize: 2
-          }}
-          value={this.state.code}
-        />
+        {this.renderTitleBar()}
+        {this.renderAceEditor()}
       </div>
     );
   }
