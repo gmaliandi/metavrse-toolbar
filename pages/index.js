@@ -83,7 +83,7 @@ export default class Index extends React.Component {
     return (
       <div className="metavrse-root">
         <Head>
-          <title>metavrse.io - live coding toolbar</title>
+          <title>live coding toolbar</title>
           <script src="https://jspm.io/system@0.19.js"></script>
           <script type="text/javascript">
             window.jspmSystem = System;
