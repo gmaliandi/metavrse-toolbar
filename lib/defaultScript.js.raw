@@ -1,10 +1,20 @@
+const idleText = 'nothing hovered';
+
 export default class Script%SCRIPT_INDEX% {
-  onClick(object, mouseEvent) {
-    // Remove the object from the scene
+  constructor() {
+    this.text = idleText;
+  }
+
+  onClick(object) {
     object.parentNode.removeChild(object);
   }
 
-  onHover(object, mouseEvent) {
-    console.log(object);
+  onHover(object) {
+    const friendlyName = `${object.tagName.toLowerCase()}`;
+    this.text = `remove ${friendlyName}`;
+  }
+
+  onHoverEnd() {
+    this.text = idleText;
   }
 }

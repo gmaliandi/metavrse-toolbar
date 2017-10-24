@@ -6,6 +6,7 @@ import {
   getCode,
   registerScript,
   hasCode,
+  getItemText,
   loadFromLocalStorage as loadScriptsFromLocalStorage,
   handleEvent,
   validEventNames
@@ -63,16 +64,19 @@ export default class Index extends React.Component {
   onSceneObjectClicked(e) {
     const obj = e.target;
     handleEvent(this.state.selectedIndex, validEventNames.CLICK, {e, obj});
+    this.forceUpdate();
   }
 
   onSceneObjectMouseLeave(e) {
     const obj = e.target;
     handleEvent(this.state.selectedIndex, validEventNames.HOVER_END, {e, obj});
+    this.forceUpdate();
   }
 
   onSceneObjectMouseEnter(e) {
     const obj = e.target;
     handleEvent(this.state.selectedIndex, validEventNames.HOVER, {e, obj});
+    this.forceUpdate();
   }
 
   render() {
@@ -99,6 +103,7 @@ export default class Index extends React.Component {
           numberOfItems={9}
           editCode={(i) => this.setCoding(i)}
           hasCode={hasCode}
+          getItemText={getItemText}
         />
 
         {this.isCoding &&

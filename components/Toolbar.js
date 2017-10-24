@@ -12,6 +12,7 @@ export default (props) => (
         onContextMenu={() => props.editCode(i)}
         style={{marginRight: '2px'}}
         hasCode={props.hasCode(i)}
+        text={props.getItemText(i)}
       />
     ))}
 

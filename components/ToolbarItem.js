@@ -16,7 +16,12 @@ export default class ToolbarItem extends React.Component {
         className="toolbarItem"
       >
         <div className="content">
-          {this.props.hasCode && `{}`}
+          <div className="codeIcon">
+            {this.props.hasCode && `{}`}
+          </div>
+          {this.props.selected && this.props.text &&
+            <p className="text">{this.props.text}</p>
+          }
         </div>
 
         <style jsx>{`
@@ -28,7 +33,7 @@ export default class ToolbarItem extends React.Component {
           }
 
           .toolbarItem:hover {
-            outline: 3px ${this.props.selected ? 'solid' : 'dashed'} #222;
+            outline: 3px solid #222;
           }
 
           .content {
@@ -36,11 +41,22 @@ export default class ToolbarItem extends React.Component {
             width: 100%;
             height: 100%;
             background-color: ${this.props.selected ? 'rgba(0, 174, 239, 0.7)' : 'transparent'}
+          }
+
+          .codeIcon {
             opacity: 0.75;
             font-size: 48px;
             font-family: monospace;
             text-align: center;
-            line-height: 128px;
+            padding-top: 32px;
+            opacity: 0.7;
+          }
+
+          .text {
+            margin-top: 10px;
+            text-align: center;
+            font-family: monospace;
+            width: 100%;
           }
         `}</style>
       </div>
