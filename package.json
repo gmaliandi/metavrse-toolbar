@@ -32,7 +32,8 @@
     "next": "latest",
     "react": "^16.0.0",
     "react-ace": "^5.4.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-tooltip": "^3.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",

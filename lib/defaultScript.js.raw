@@ -10,8 +10,7 @@ export default class Script%SCRIPT_INDEX% {
   }
 
   onHover(object) {
-    const friendlyName = `${object.tagName.toLowerCase()}`;
-    this.text = `remove ${friendlyName}`;
+    this.text = `click to remove ${object.tagName.toLowerCase()}`;
   }
 
   onHoverEnd() {
