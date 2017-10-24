@@ -40,7 +40,7 @@ export default class ToolbarItem extends React.Component {
             user-select: none;
             width: 100%;
             height: 100%;
-            background-color: ${this.props.selected ? 'rgba(0, 174, 239, 0.7)' : 'transparent'}
+            background-color: ${this.props.selected ? 'rgba(166, 174, 166, 0.3)' : 'transparent'}
           }
 
           .codeIcon {
