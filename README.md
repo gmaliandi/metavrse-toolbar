@@ -1,5 +1,5 @@
 ## A-frame scripting toolbar
-Toolbar with ES6 scripts that you can right-click and edit. [Live demo here](https://metavrse-toolbar-bvcjpmogek.now.sh]).
+Toolbar with ES6 scripts that you can right-click and edit. [Live demo here](https://metavrse-toolbar-bvcjpmogek.now.sh).
 
 ### How it works
 When you hover or click anything in the sample a-frame scene, the currently selected script receives an `onHover`, `onHoverEnd` or `onClick` event. Scripts you modify are persisted in local storage.
