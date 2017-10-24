@@ -10,7 +10,7 @@ export default class Script%SCRIPT_INDEX% {
   }
 
   onHover(object) {
-    this.text = `click to remove ${object.tagName.toLowerCase()}`;
+    this.text = `remove ${object.tagName.toLowerCase()}`;
   }
 
   onHoverEnd() {
