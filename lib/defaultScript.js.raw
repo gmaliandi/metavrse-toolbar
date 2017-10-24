@@ -1,0 +1,10 @@
+export default class Script%SCRIPT_INDEX% {
+  onClick(object, mouseEvent) {
+    // Remove the object from the scene
+    object.parentNode.removeChild(object);
+  }
+
+  onHover(object, mouseEvent) {
+    console.log(object);
+  }
+}

@@ -25,6 +25,7 @@
   "homepage": "https://github.com/gmaliandi/metavrse-toolbar#readme",
   "dependencies": {
     "aframe": "^0.7.1",
+    "babel-plugin-inline-import": "^2.0.6",
     "brace": "^0.10.0",
     "local-storage": "^1.4.2",
     "lodash": "^4.17.4",
