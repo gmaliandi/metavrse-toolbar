@@ -6,6 +6,8 @@ import 'brace/mode/javascript';
 import 'brace/theme/chaos';
 import 'brace/ext/language_tools';
 
+import classNames from 'classnames';
+
 export default class CodeEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -56,11 +58,13 @@ export default class CodeEditor extends React.Component {
   }
 
   renderTitleBar() {
+    const saveButtonClassnames = classNames('save', {active: this.isDirty});
+
     return (
       <div className="titleBar">
         <span>editing script at position {this.props.index}{this.isDirty ? '*' : ' '}</span>
         <span> | press <kbd onClick={this.save}>control+s</kbd> to save, <kbd onClick={this.exit}>esc</kbd> to go back to scene</span>
-        <span onClick={this.save} className="save">&#10003;</span>
+        <span onClick={this.save} className={saveButtonClassnames}>&#10003;</span>
         <div onClick={this.exit} className="close" />
         <style jsx>{`
           .titleBar {
@@ -83,12 +87,16 @@ export default class CodeEditor extends React.Component {
             float: right;
             line-height: 18px;
             margin-right: 28px;
-            opacity: 0.5;
-            cursor: pointer;
+            opacity: 0.3;
             color: #ddd;
           }
 
-          .save:hover {
+          .save.active {
+            cursor: pointer;
+            opacity: 0.5;
+          }
+
+          .save.active:hover {
             opacity: 1;
           }
 
